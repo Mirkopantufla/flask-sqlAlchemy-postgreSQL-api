@@ -2,7 +2,7 @@ from models import db
 
 class Comunne(db.Model):
     __tablename__ = "communes"
-    commune_id = db.Column(db.Integer, primary_key=True)
+    commune_id = db.Column(db.String(100), primary_key=True)
     region_id = db.Column(db.Integer, nullable=False)
     name = db.Column(db.Integer, nullable=False)
 
