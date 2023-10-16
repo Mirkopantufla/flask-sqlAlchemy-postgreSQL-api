@@ -5,8 +5,8 @@ class Cart(db.Model):
     __tablename__ = "carts"
     cart_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    date = db.Column(db.DateTime, default=datetime.now)
-    product_ids = db.Column("product_ids", db.ARRAY(db.Integer), db.ForeignKey("products.product_id"))
+    date = db.Column(db.DateTime, default=(datetime.now))
+    product_ids = db.Column("product_ids", db.ARRAY(db.Integer))
 
     def serialize(self):
         return {

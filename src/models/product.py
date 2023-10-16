@@ -2,13 +2,12 @@ from models import db
 
 class Product(db.Model):
     __tablename__ = "products"
-    product_id = db.Column(db.String(300), primary_Key=True)
+    product_id = db.Column(db.String(300), primary_key=True)
     title = db.Column(db.String(300), nullable=False)
-    price = db.Column()
+    price = db.Column(db.Integer)
     description = db.Column(db.String(3000), nullable=False)
     category = db.Column(db.String(300))
     image_id = db.Column(db.Integer)
-    value = db.Column(db.Integer)
     rating = db.Column(db.String)
 
     def serialize(self):
@@ -19,7 +18,6 @@ class Product(db.Model):
             "description": self.description,
             "category": self.category,
             "image_id": self.image_id,
-            "value": self.value,
             "rating": self.rating
         }
     

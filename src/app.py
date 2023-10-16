@@ -6,8 +6,16 @@ from flask_cors import CORS
 from models import db
 
 from models.user import User
+from models.shipDetail import ShipDetail
+from models.region import Region
+from models.product import Product
+from models.image import Image
+from models.commune import Comunne
+from models.cart import Cart
 
 from dotenv import load_dotenv
+
+from routes.users import api as api_users
 
 load_dotenv()
 
@@ -22,6 +30,8 @@ db.init_app(app)
 Migrate(app, db)
 jwt = JWTManager(app)
 CORS(app)
+
+app.register_blueprint(api_users, url_prefix="/api")
 
 if __name__ == '__main__':
     app.run()
