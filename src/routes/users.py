@@ -52,7 +52,7 @@ def user_register():
     newUser.last_name = last_name
     newUser.phone_number = phone_number
     newUser.email = email
-    newUser.password = password
+    newUser.password = generate_password_hash(password)
     newUser.terms_conditions = terms_conditions
     newUser.register_date = register_date
 

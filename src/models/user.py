@@ -12,6 +12,7 @@ class User(db.Model):
     password = db.Column(db.String(20), nullable=False)
     terms_conditions = db.Column(db.Boolean, nullable=False, default=False)
     register_date = db.Column(db.DateTime, default=(datetime.now))
+    role_id = db.Column(db.Integer, db.ForeignKey("roles.role_id"), default=2) #0 admin/1 worker/2 normalUser
 
     def serialize(self):
         return {
@@ -23,7 +24,8 @@ class User(db.Model):
             "email": self.email,
             "password": self.password,
             "terms_conditions": self.terms_conditions,
-            "register_date": self.register_date
+            "register_date": self.register_date,
+            "role_id": self.role_id
         }
     
     def save(self):
