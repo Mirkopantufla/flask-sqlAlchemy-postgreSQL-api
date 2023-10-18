@@ -24,8 +24,7 @@ class User(db.Model):
             "email": self.email,
             "password": self.password,
             "terms_conditions": self.terms_conditions,
-            "register_date": self.register_date,
-            "role_id": self.role_id
+            "register_date": self.register_date
         }
     
     def save(self):

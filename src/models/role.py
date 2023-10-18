@@ -1,10 +1,12 @@
 from models import db
+from sqlalchemy.orm import relationship
 
 class Role(db.Model):
     __tablename__ = "roles"
     role_id = db.Column(db.Integer, primary_key=True) #0 Admin/1 Worker/2 Client
     description = db.Column(db.String(100), nullable=False)
     active = db.Column(db.Boolean, default=True)
+    children = relationship("User")
 
     def serialize(self):
         return {

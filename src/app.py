@@ -5,13 +5,14 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from models import db
 
-from models.user import User
-from models.shipDetail import ShipDetail
-from models.region import Region
-from models.product import Product
-from models.image import Image
-from models.commune import Comunne
 from models.cart import Cart
+from models.commune import Comunne
+from models.image import Image
+from models.product import Product
+from models.region import Region
+from models.role import Role
+from models.shipDetail import ShipDetail
+from models.user import User
 
 from dotenv import load_dotenv
 
