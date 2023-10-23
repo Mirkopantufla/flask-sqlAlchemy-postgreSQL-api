@@ -8,6 +8,8 @@ api = Blueprint('api_users', __name__)
 
 @api.route('/register', methods=['POST'])
 def user_register():
+
+    print("HI")
     
     rut_number = request.json.get('rut_number')
     first_name = request.json.get('first_name')
@@ -16,11 +18,10 @@ def user_register():
     email = request.json.get('email')
     password = request.json.get('password')
     terms_conditions = request.json.get('terms_conditions')
-    register_date = request.json.get('register_date')
 
-    existRutUser = User.query.filter(rut_number = rut_number).first()
-    existPhoneNumber = User.query.filter(phone_number = phone_number).first()
-    existEmail = User.query.filter(email = email).first()
+    existRutUser = User.query.filter_by(rut_numbers = rut_number).first()
+    existPhoneNumber = User.query.filter_by(phone_number = phone_number).first()
+    existEmail = User.query.filter_by(email = email).first()
 
     #rut_number, unique
     if not rut_number:
@@ -54,10 +55,7 @@ def user_register():
     newUser.email = email
     newUser.password = generate_password_hash(password)
     newUser.terms_conditions = terms_conditions
-    newUser.register_date = register_date
 
-    print(newUser)
-    # users = User.query.all()
-    # users = list(map(lambda user: user.serialize(), users))
+    newUser.save()
 
-    return jsonify("hola"), 200
+    return jsonify("nuevo usuario: ", newUser.serialize()), 200
