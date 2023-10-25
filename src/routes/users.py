@@ -65,3 +65,23 @@ def list_users():
     users = list(map(lambda user: user.serialize(), users))
 
     return jsonify(users), 200
+
+@api.route('/users/<int:id>', methods=['GET'])
+def specific_user(id):
+
+    user = User.query.get(id)
+
+    if not user : return jsonify({'message':'Usuario inexistente'}), 400
+
+    return jsonify(user.serialize()), 200
+
+@api.route('/users/delete/<int:id>', methods=['DELETE'])
+def delete_user(id):
+    
+    user = User.query.get(id)
+
+    if not user: return jsonify({'Advertencia: ': 'Usuario inexistente'})
+
+    user.delete()
+
+    return jsonify({'Aceptado: ': 'Usuario Eliminado'}), 201
