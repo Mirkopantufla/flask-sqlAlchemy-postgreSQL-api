@@ -6,7 +6,7 @@ class Role(db.Model):
     role_id = db.Column(db.Integer, primary_key=True) #0 Admin/1 Worker/2 Client
     description = db.Column(db.String(100), nullable=False)
     active = db.Column(db.Boolean, default=True)
-    children = relationship("User")
+    users = db.relationship("User", backref="roles")
 
     def serialize(self):
         return {

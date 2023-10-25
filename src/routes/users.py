@@ -9,8 +9,6 @@ api = Blueprint('api_users', __name__)
 @api.route('/register', methods=['POST'])
 def user_register():
 
-    print("HI")
-    
     rut_number = request.json.get('rut_number')
     first_name = request.json.get('first_name')
     last_name = request.json.get('last_name')
@@ -58,4 +56,12 @@ def user_register():
 
     newUser.save()
 
-    return jsonify("nuevo usuario: ", newUser.serialize()), 200
+    return jsonify("Nuevo usuario: ", newUser.serialize()), 200
+
+@api.route('/users', methods=["GET"])
+def list_users():
+
+    users = User.query.all()
+    users = list(map(lambda user: user.serialize(), users))
+
+    return jsonify(users), 200
