@@ -2,9 +2,9 @@ from models import db
 
 class Product(db.Model):
     __tablename__ = "products"
-    product_id = db.Column(db.String(300), primary_key=True)
+    product_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(300), nullable=False)
-    price = db.Column(db.Integer)
+    price = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(3000), nullable=False)
     category = db.Column(db.String(300))
     image_id = db.Column(db.Integer)

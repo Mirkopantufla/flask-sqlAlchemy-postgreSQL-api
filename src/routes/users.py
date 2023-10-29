@@ -6,7 +6,43 @@ from models.user import User
 
 api = Blueprint('api_users', __name__)
 
-@api.route('/register', methods=['POST'])
+# <----------------------------------------------------------------->
+# LISTAR USUARIOS
+@api.route('/users', methods=["GET"])
+def all_users():
+
+    users = User.query.all()
+    users = list(map(lambda user: user.serialize(), users))
+
+    return jsonify({'accepted': users}), 200
+
+# <----------------------------------------------------------------->
+# LISTAR UN USUARIO
+@api.route('/users/<int:id>', methods=['GET'])
+def single_user(id):
+
+    user = User.query.get(id)
+
+    if not user : return jsonify({'warning':'Usuario inexistente'}), 400
+
+    return jsonify({'accepted': user.serialize()}), 200
+
+# <----------------------------------------------------------------->
+# BORRAR USUARIO
+@api.route('/users/delete/<int:id>', methods=['DELETE'])
+def delete_user(id):
+    
+    user = User.query.get(id)
+
+    if not user: return jsonify({'warning: ': 'Usuario inexistente'})
+
+    user.delete()
+
+    return jsonify({'Aceptado: ': 'Usuario Eliminado'}), 201
+
+# <----------------------------------------------------------------->
+# REGISTRAR USUARIO
+@api.route('/users/register', methods=['POST'])
 def user_register():
 
     rut_number = request.json.get('rut_number')
@@ -56,32 +92,4 @@ def user_register():
 
     newUser.save()
 
-    return jsonify("Nuevo usuario: ", newUser.serialize()), 200
-
-@api.route('/users', methods=["GET"])
-def list_users():
-
-    users = User.query.all()
-    users = list(map(lambda user: user.serialize(), users))
-
-    return jsonify(users), 200
-
-@api.route('/users/<int:id>', methods=['GET'])
-def specific_user(id):
-
-    user = User.query.get(id)
-
-    if not user : return jsonify({'message':'Usuario inexistente'}), 400
-
-    return jsonify(user.serialize()), 200
-
-@api.route('/users/delete/<int:id>', methods=['DELETE'])
-def delete_user(id):
-    
-    user = User.query.get(id)
-
-    if not user: return jsonify({'Advertencia: ': 'Usuario inexistente'})
-
-    user.delete()
-
-    return jsonify({'Aceptado: ': 'Usuario Eliminado'}), 201
+    return jsonify({"Nuevo usuario ": newUser.serialize()}), 200
