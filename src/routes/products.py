@@ -30,15 +30,34 @@ def delete_product(id):
 
     return jsonify({"Single product": "Producto Eliminado"}), 200
 
-# @api.route('/products/add', methods='[POST]')
+# @api.route('/products/add', methods=['POST'])
 # def add_product():
 
+#     title = request.form['title']
+#     price = request.form['price']
+#     description = request.form['description']
+#     category = request.form['category']
+#     image_id = request.form['image_id']
+#     rating = request.form['rating']
+
+#     imagen = None
+
+#     if not title: return jsonify({"advertencia": "El titulo es requerido!"}), 400
+#     if not price: return jsonify({"advertencia": "Precio requerido!"}), 400
+#     if not description: return jsonify({"advertencia": "Descripcion requerida!"}), 400
+#     if not category: return jsonify({"advertencia": "Categoria requerida!"}), 400
+    
+#     if not 'imagen' in request.files: 
+#         return jsonify({"advertencia": "La imagen es requerida!"}), 400
+#     else: 
+#         imagen = request.files['imagen']
+
 #     newProduct = Product()
-#     newProduct.title
-#     newProduct.price
-#     newProduct.description
-#     newProduct.category
-#     newProduct.image_id
-#     newProduct.rating
+#     newProduct.title = title
+#     newProduct.price = price
+#     newProduct.description = description
+#     newProduct.category = category
+#     newProduct.image_id = image_id
+#     newProduct.rating = rating
 
     

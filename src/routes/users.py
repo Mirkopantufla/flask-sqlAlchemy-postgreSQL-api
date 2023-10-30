@@ -8,7 +8,7 @@ api = Blueprint('api_users', __name__)
 
 # <----------------------------------------------------------------->
 # LISTAR USUARIOS
-@api.route('/users', methods=["GET"])
+@api.route('/users', methods=['GET'])
 def all_users():
 
     users = User.query.all()
