@@ -7,7 +7,7 @@ class User(db.Model):
     rut_numbers = db.Column(db.Integer, nullable=False, unique=True)
     first_name = db.Column(db.String(300), nullable=False)
     last_name = db.Column(db.String(300), nullable=False)
-    phone_number = db.Column(db.Integer, nullable=False, unique=True) #Unico
+    phone_number = db.Column(db.BigInteger, nullable=False, unique=True) #Unico
     email = db.Column(db.String(300), nullable=False, unique=True) #Unico
     password = db.Column(db.String(300), nullable=False)
     terms_conditions = db.Column(db.Boolean, nullable=False, default=False)

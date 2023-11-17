@@ -28,4 +28,4 @@ def login():
         "user": userFound.serialize()
     }
     
-    return jsonify({ "success": "Login successfully", "data": data, "status": 200})
+    return jsonify({"data": data, "status": 200})
