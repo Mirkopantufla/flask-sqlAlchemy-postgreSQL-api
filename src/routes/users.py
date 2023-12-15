@@ -92,4 +92,4 @@ def user_register():
 
     newUser.save()
 
-    return jsonify({"Nuevo usuario ": newUser.serialize()}), 200
+    return jsonify({"Nuevo Usuario": newUser.serialize()}), 200
