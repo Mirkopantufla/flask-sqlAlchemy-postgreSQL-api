@@ -38,7 +38,7 @@ def delete_user(id):
 
     user.delete()
 
-    return jsonify({'Aceptado: ': 'Usuario Eliminado'}), 201
+    return jsonify({'success: ': 'Usuario Eliminado'}), 201
 
 # <----------------------------------------------------------------->
 # REGISTRAR USUARIO
