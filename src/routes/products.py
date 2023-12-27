@@ -19,7 +19,7 @@ def single_product(id):
     
     if not product: return jsonify({"warning": "Producto inexistente"}), 400
 
-    return jsonify({"Product" : product.serialize()}), 200
+    return jsonify(product.serialize()), 200
 
 @api.route('/products/delete/<int:id>', methods=['DELETE'])
 def delete_product(id):
