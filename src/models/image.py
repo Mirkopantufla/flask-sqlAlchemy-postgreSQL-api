@@ -6,13 +6,15 @@ class Image(db.Model):
     src_imagen = db.Column(db.String(400))
     id_publico = db.Column(db.String(200))
     activo = db.Column(db.Boolean, default=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.product_id'))
 
     def serialize(self):
         return {
-            "id": self.id,
+            "image_id": self.image_id,
             "src_imagen": self.src_imagen,
             "id_publico": self.id_publico,
-            "activo": self.activo
+            "activo": self.activo,
+            "product_id": self.product_id
         }
         
     def save(self):

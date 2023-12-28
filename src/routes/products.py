@@ -37,7 +37,6 @@ def add_product():
     price = request.form['price']
     description = request.form['description']
     category = request.form['category']
-    image_id = request.form['image_id']
     rating = request.form['rating']
 
     imagen = None
@@ -49,7 +48,7 @@ def add_product():
     
     if not 'imagen' in request.files: 
         return jsonify({"advertencia": "La imagen es requerida!"}), 400
-    else: 
+    else:
         imagen = request.files['imagen']
 
     newProduct = Product()
@@ -57,7 +56,6 @@ def add_product():
     newProduct.price = price
     newProduct.description = description
     newProduct.category = category
-    newProduct.image_id = image_id
     newProduct.rating = rating
 
     
