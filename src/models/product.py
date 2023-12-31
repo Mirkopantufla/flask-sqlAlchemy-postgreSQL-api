@@ -7,7 +7,7 @@ class Product(db.Model):
     price = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(3000), nullable=False)
     category = db.Column(db.String(300))
-    rating = db.Column(db.String)
+    rating = db.Column(db.Integer)
     images = db.relationship('Image', backref='product')
 
     def serialize(self):
@@ -20,7 +20,7 @@ class Product(db.Model):
             "rating": self.rating
         }
     
-    def serialize_with_mages(self):
+    def serialize_with_images(self):
         return {
             "product_id": self.product_id,
             "title": self.title,
