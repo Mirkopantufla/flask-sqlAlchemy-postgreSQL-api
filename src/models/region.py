@@ -8,6 +8,7 @@ class Region(db.Model):
     country_id = db.Column(db.Integer, nullable=False, default=0) #0 = Chile
     roman_number = db.Column(db.String(30), nullable=False)
 
+    # Serializo la region
     def serialize(self):
         return {
             "region_id": self.region_id,

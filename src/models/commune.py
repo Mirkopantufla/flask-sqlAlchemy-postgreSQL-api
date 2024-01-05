@@ -6,6 +6,7 @@ class Comunne(db.Model):
     region_id = db.Column(db.Integer, nullable=False)
     name = db.Column(db.Integer, nullable=False)
 
+    # Serializo las comunas
     def serialize(self):
         return {
             "commune_id": self.commune_id,

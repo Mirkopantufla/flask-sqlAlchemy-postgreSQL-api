@@ -8,8 +8,9 @@ class Product(db.Model):
     description = db.Column(db.String(3000), nullable=False)
     category = db.Column(db.String(300))
     rating = db.Column(db.Integer)
-    images = db.relationship('Image', backref='product')
+    images = db.relationship("Image", backref="product")
 
+    # Serializo el producto
     def serialize(self):
         return {
             "product_id": self.product_id,
@@ -20,6 +21,7 @@ class Product(db.Model):
             "rating": self.rating
         }
     
+    # Serializo la imagen junto con todas las imagenes asociadas
     def serialize_with_images(self):
         return {
             "product_id": self.product_id,

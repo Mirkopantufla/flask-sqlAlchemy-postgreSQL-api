@@ -8,6 +8,7 @@ class Cart(db.Model):
     date = db.Column(db.DateTime, default=(datetime.now))
     product_ids = db.Column("product_ids", db.ARRAY(db.Integer))
 
+    # Serializo el carro
     def serialize(self):
         return {
             "cart_id": self.cart_id,
