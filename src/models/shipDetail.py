@@ -11,6 +11,7 @@ class ShipDetail(db.Model):
     commune_id = db.Column(db.Integer, nullable=False)
     region_id = db.Column(db.Integer, nullable=False)
 
+    # Serializo la orden delivery
     def serialize(self):
         return {
             "shipDetail_id": self.shipDetail_id,

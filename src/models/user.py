@@ -14,6 +14,7 @@ class User(db.Model):
     register_date = db.Column(db.DateTime, default=(datetime.now))
     role_id = db.Column(db.Integer, db.ForeignKey("roles.role_id"), default=2) #0 admin/1 worker/2 normalUser
 
+    # Serializo el usuario
     def serialize(self):
         return {
             "user_id": self.user_id,
