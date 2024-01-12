@@ -7,7 +7,7 @@ class Product(db.Model):
     price = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(3000), nullable=False)
     category = db.Column(db.String(300))
-    rating = db.Column(db.Integer)
+    rating = db.Column(db.Integer, default=0)
     images = db.relationship("Image", backref="product")
 
     # Serializo el producto

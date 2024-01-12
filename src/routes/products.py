@@ -30,6 +30,18 @@ def delete_product(id):
 
     return jsonify({"Single product": "Producto Eliminado"}), 200
 
+@api.route('/products/find/categories', methods=['GET'])
+def get_find_categories():
+
+    # En este caso, de todos los productos, extraigo cada uno de ellos sin repetir y los guardo en categories.
+    categories = Product.query.distinct(Product.category)
+    categories = list(map(lambda product: product.category, categories))
+
+    print(categories)
+
+    return jsonify(categories), 200
+
+
 @api.route('/products/add', methods=['POST'])
 def add_product():
 
