@@ -40,7 +40,7 @@ class Product(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def upload(self):
+    def update(self):
         db.session.commit()
 
     def delete(self):
