@@ -14,7 +14,7 @@ $ cd flask-sqlAlchemy-postgreSQL-api
 
 - Instala los paquetes con `$ pipenv install`.
 - Debes crear el entorno virual con `pipenv shell`
-- Tambien no olvides seleccionar el interprete, Cmd + Shift + P en Mac / Ctrl + Shift + P en Windows. Entonces, escribe “Python: Select Interpreter”
+- Tambien no olvides seleccionar el interprete, Ctrl + Shift + P en Windows. Entonces, escribe “Python: Select Interpreter”
 - Para iniciar el backend `$ python src/app.py`
 
 
