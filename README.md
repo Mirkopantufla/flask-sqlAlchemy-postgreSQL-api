@@ -1,6 +1,36 @@
-# flask-sqlAlchemy-postgreSQL-api
+# flask-sqlAlchemy-postgreSQL-api 
 
-### Proyecto hecho con Python 3, Flask y SQLAlchemy
+## Proyecto hecho con Python 3, Flask, SQLAlchemy y PostgreSQL
+### Endpoints
+
+# Products
+- /products
+> Devuelve todos los productos.
+
+- /products/<int:id>
+> Devuelve un producto en especifico por el id.
+
+- /products/delete/<int:id>
+> Elimina un producto en especifico por el id.
+
+- /products/find/categories
+> Devuelve todas las categorias presentes en los productos sin repetir.
+method: 'GET'
+
+- /products/add
+> Agrega un producto nuevo, el cual tiene obligatorios todos sus atributos.
+
+```
+method: 'POST',
+headers: {'Content-Type': 'multipart/form-data'},
+body: JSON.stringify({
+  title: "",
+  price: 0,
+  description: "",
+  category: "",
+  images: File   //.jpg | .jpeg | .png
+})
+```
 
 ## Instalación Local
 
