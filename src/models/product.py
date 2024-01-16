@@ -8,7 +8,7 @@ class Product(db.Model):
     description = db.Column(db.String(3000), nullable=False)
     category = db.Column(db.String(300))
     rating = db.Column(db.Integer, default=0)
-    images = db.relationship("Image", backref="product")
+    images = db.relationship("Image", backref="product", cascade='all, delete-orphan', single_parent=True)
 
     # Serializo el producto
     def serialize(self):
