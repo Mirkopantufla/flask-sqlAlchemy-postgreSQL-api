@@ -59,27 +59,27 @@ def user_register():
 
     #rut_number, unique
     if not rut_number:
-        return jsonify({"warning": "Rut number is required"}), 400
+        return jsonify({"status": 400, "warning": "Rut number is required"}), 400
     elif existRutUser:
-        return jsonify({"warning": "Rut number is already taken!"}), 400
+        return jsonify({"status": 400, "warning": "Rut number is already taken!"}), 400
     
     #phone_number, unique
     if not phone_number:
-        return jsonify({"warning": "Phone number is required"}), 400
+        return jsonify({"status": 400, "warning": "Phone number is required"}), 400
     elif existPhoneNumber:
-        return jsonify({"warning": "Phone number is already taken!"}), 400
+        return jsonify({"status": 400, "warning": "Phone number is already taken!"}), 400
 
     #email, unique
     if not email: 
-        return jsonify({"warning": "Email is required"}), 400
+        return jsonify({"status": 400, "warning": "Email is required"}), 400
     elif existEmail:
-        return jsonify({"warning": "Email is already taken!"}), 400
+        return jsonify({"status": 400, "warning": "Email is already taken!"}), 400
     
 
-    if not first_name: return jsonify({"warning": "First name is required"}), 400
-    if not last_name: return jsonify({"warning": "Last name is required"}), 400
-    if not password: return jsonify({"warning": "Password required"}), 400
-    if not terms_conditions: return jsonify({"warning": "Terms and Conditions must be accepted"}), 400
+    if not first_name: return jsonify({"status": 400, "warning": "First name is required"}), 400
+    if not last_name: return jsonify({"status": 400, "warning": "Last name is required"}), 400
+    if not password: return jsonify({"status": 400, "warning": "Password required"}), 400
+    if not terms_conditions: return jsonify({"status": 400, "warning": "Terms and Conditions must be accepted"}), 400
 
     newUser = User()
     newUser.rut_numbers = rut_number
@@ -92,4 +92,4 @@ def user_register():
 
     newUser.save()
 
-    return jsonify({"Nuevo Usuario": newUser.serialize()}), 200
+    return jsonify({"status": 200,"user": newUser.serialize()}), 200

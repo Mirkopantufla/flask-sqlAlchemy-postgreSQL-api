@@ -13,7 +13,7 @@ api = Blueprint('api_products', __name__)
 def all_products():
 
     products = Product.query.all()
-    products = list(map(lambda product: product.serialize(), products))
+    products = list(map(lambda product: product.serialize_with_images(), products))
 
     return jsonify(products), 200
 
@@ -24,7 +24,7 @@ def single_product(id):
     
     if not product: return jsonify({"warning": "Producto inexistente"}), 400
 
-    return jsonify({"product": product.serialize_with_images()}), 200
+    return jsonify(product.serialize_with_images()), 200
 
 @api.route('/products/delete/<int:id>', methods=['DELETE'])
 def delete_product(id):
@@ -35,7 +35,7 @@ def delete_product(id):
 
     return jsonify({"Single product": "Producto Eliminado"}), 200
 
-@api.route('/products/find/categories', methods=['GET'])
+@api.route('/products/categories', methods=['GET'])
 def get_find_categories():
 
     # En este caso, de todos los productos, extraigo cada uno de ellos sin repetir y los guardo en categories.
@@ -56,8 +56,6 @@ def add_product():
     images_data = []
     images = None
 
-    print(title)
-
     # Valido que los campos no vengan vacios
     if not title: return jsonify({"warning": "El titulo es requerido!"}), 400
     if not price: return jsonify({"warning": "Precio requerido!"}), 400
@@ -69,7 +67,6 @@ def add_product():
     else: 
         images = request.files.getlist('images')
     
-    print(images)
     # Valido si realmente vienen imagenes validas
     for image in images:
         if (image.filename == ''):
