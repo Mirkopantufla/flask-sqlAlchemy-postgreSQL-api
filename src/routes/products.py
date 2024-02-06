@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 
 api = Blueprint('api_products', __name__)
 
+# ---------------------- /PRODUCTS [GET] ----------------------
 @api.route('/products', methods=['GET'])
 def all_products():
 
@@ -17,24 +18,27 @@ def all_products():
 
     return jsonify(products), 200
 
+# ---------------------- /PRODUCTS/<int:id> [GET] ----------------------
 @api.route('/products/<int:id>', methods=['GET'])
 def single_product(id):
 
     product = Product.query.get(id)
     
-    if not product: return jsonify({"warning": "Producto inexistente"}), 400
+    if not product: return jsonify({"warning": "Product not found"}), 400
 
-    return jsonify(product.serialize_with_images()), 200
+    return jsonify({"success": "Founded product", "product": product.serialize_with_images()}), 200
 
+# ---------------------- /PRODUCTS/DELETE/<int:id> [DELETE] ----------------------
 @api.route('/products/delete/<int:id>', methods=['DELETE'])
 def delete_product(id):
 
     product = Product.query.get(id)
 
-    if not product: return jsonify({"warning": "Producto buscado inexistente"}), 400
+    if not product: return jsonify({"warning": "Product not found"}), 400
 
-    return jsonify({"Single product": "Producto Eliminado"}), 200
+    return jsonify({"success": "Deleted Product"}), 200
 
+# ---------------------- /PRODUCTS/CATEGORIES [GET] ----------------------
 @api.route('/products/categories', methods=['GET'])
 def get_find_categories():
 
@@ -44,7 +48,7 @@ def get_find_categories():
 
     return jsonify(categories), 200
 
-
+# ---------------------- /PRODUCTS/ADD [POST] ----------------------
 @api.route('/products/add', methods=['POST'])
 def add_product():
 
@@ -57,13 +61,13 @@ def add_product():
     images = None
 
     # Valido que los campos no vengan vacios
-    if not title: return jsonify({"warning": "El titulo es requerido!"}), 400
-    if not price: return jsonify({"warning": "Precio requerido!"}), 400
-    if not description: return jsonify({"warning": "Descripcion requerida!"}), 400
-    if not category: return jsonify({"warning": "Categoria requerida!"}), 400
+    if not title: return jsonify({"warning": "El titulo es requerido"}), 400
+    if not price: return jsonify({"warning": "Precio requerido"}), 400
+    if not description: return jsonify({"warning": "Descripcion requerida"}), 400
+    if not category: return jsonify({"warning": "Categoria requerida"}), 400
 
     if not 'images' in request.files: 
-        return jsonify({"warning": "La imagen es requerida!"}), 400
+        return jsonify({"warning": "The image is required"}), 400
     else: 
         images = request.files.getlist('images')
     
