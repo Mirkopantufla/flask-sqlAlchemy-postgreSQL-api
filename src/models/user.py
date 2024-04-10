@@ -29,6 +29,19 @@ class User(db.Model):
             "role_id": self.role_id
         }
     
+    def secure_serialize(self):
+        return {
+            "user_id": self.user_id,
+            "rut_numbers": self.rut_numbers,
+            "first_name": self.first_name,
+            "last_name": self.last_name, 
+            "phone_number": self.phone_number,
+            "email": self.email,
+            "terms_conditions": self.terms_conditions,
+            "register_date": self.register_date,
+            "role_id": self.role_id
+        }
+    
     def get_roles(self):
         return list(map(lambda role: role.serialize(), self.roles))
     

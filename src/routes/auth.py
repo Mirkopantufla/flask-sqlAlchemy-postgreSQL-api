@@ -11,15 +11,15 @@ def login():
     email = request.json.get('email')
     password = request.json.get('password')
     
-    if not email: return jsonify({ "warning": "El correo es requerido!", "status": 400})
-    if not password: return jsonify({ "warning": "La contraseña es requerido!" , "status": 400})
+    if not email: return jsonify({ "warning": "Email is required!", "status": 400})
+    if not password: return jsonify({ "warning": "Password is required!" , "status": 400})
     
     userFound = User.query.filter_by(email=email).first()
     
-    if not userFound: return jsonify({ "error": "El correo o password es incorrecto", "status": 401})
+    if not userFound: return jsonify({ "error": "Incorrect email or password", "status": 401})
     
     if not check_password_hash(userFound.password, password):
-        return jsonify({ "error": "El correo o password es incorrecto", "status": 401})
+        return jsonify({ "error": "Incorrect email or password", "status": 401})
     
     access_token = create_access_token(identity=userFound.user_id)
     
