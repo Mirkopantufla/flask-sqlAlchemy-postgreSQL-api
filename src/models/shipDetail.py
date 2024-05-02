@@ -2,7 +2,7 @@ from models import db
 
 class ShipDetail(db.Model):
     __tablename__ = "ship_details"
-    shipDetail_id = db.Column(db.Integer, primary_key=True)
+    ship_detail_id = db.Column(db.Integer, primary_key=True)
     address_name = db.Column(db.String(300), nullable=False)
     address = db.Column(db.String(300), nullable=False)
     address_number = db.Column(db.Integer, nullable=False)
@@ -14,7 +14,7 @@ class ShipDetail(db.Model):
     # Serializo la orden delivery
     def serialize(self):
         return {
-            "shipDetail_id": self.shipDetail_id,
+            "ship_detail_id": self.ship_detail_id,
             "address_name": self.address_name,
             "address": self.address,
             "address_number": self.address_number,
