@@ -36,6 +36,8 @@ def delete_product(id):
 
     if not product: return jsonify({"warning": "Product not found"}), 400
 
+    product.delete()
+
     return jsonify({"success": "Deleted Product"}), 200
 
 # ---------------------- /PRODUCTS/CATEGORIES [GET] ----------------------
@@ -61,10 +63,10 @@ def add_product():
     images = None
 
     # Valido que los campos no vengan vacios
-    if not title: return jsonify({"warning": "El titulo es requerido"}), 400
-    if not price: return jsonify({"warning": "Precio requerido"}), 400
-    if not description: return jsonify({"warning": "Descripcion requerida"}), 400
-    if not category: return jsonify({"warning": "Categoria requerida"}), 400
+    if not title: return jsonify({"warning": "Tittle required"}), 400
+    if not price: return jsonify({"warning": "Price required"}), 400
+    if not description: return jsonify({"warning": "Description required"}), 400
+    if not category: return jsonify({"warning": "Category required"}), 400
 
     if not 'images' in request.files: 
         return jsonify({"warning": "The image is required"}), 400
@@ -93,15 +95,15 @@ def add_product():
         dataCloudinary.append(cloudinary.uploader.upload(image, folder="fakeStore"))
         if dataCloudinary:
             new_image = Image()
-            new_image.src_imagen = dataCloudinary[index]['url']
-            new_image.id_publico = dataCloudinary[index]['public_id']
-            new_image.activo = True
+            new_image.image_src = dataCloudinary[index]['url']
+            new_image.cloud_public_id = dataCloudinary[index]['public_id']
+            new_image.active = True
             new_image.product_id = new_product.product_id
             new_image.save()
 
-            images_data.append({"id_image": new_image.image_id, "url" : dataCloudinary[index]['url']})
+            images_data.append({"image_id": new_image.image_id, "url" : dataCloudinary[index]['url']})
 
-    return jsonify({"success": "Has añadido un producto", "images_info": images_data, "new_product": new_product.serialize()}), 200
+    return jsonify({"success": "Product successfully added", "images_info": images_data, "new_product": new_product.serialize()}), 200
 
 
 
