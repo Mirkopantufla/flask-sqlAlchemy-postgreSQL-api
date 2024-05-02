@@ -14,7 +14,7 @@ def all_users():
     users = User.query.all()
     users = list(map(lambda user: user.serialize(), users))
 
-    return jsonify({'accepted': users}), 200
+    return jsonify({'success': users}), 200
 
 # <----------------------------------------------------------------->
 # LISTAR UN USUARIO
@@ -23,9 +23,9 @@ def single_user(id):
 
     user = User.query.get(id)
 
-    if not user : return jsonify({'warning':'Usuario inexistente'}), 400
+    if not user : return jsonify({'warning':'User not found'}), 400
 
-    return jsonify({'accepted': user.serialize()}), 200
+    return jsonify({'success': user.serialize()}), 200
 
 # <----------------------------------------------------------------->
 # BORRAR USUARIO
@@ -34,11 +34,11 @@ def delete_user(id):
     
     user = User.query.get(id)
 
-    if not user: return jsonify({'warning: ': 'Usuario inexistente'})
+    if not user: return jsonify({'warning: ': 'User not found'})
 
     user.delete()
 
-    return jsonify({'success: ': 'Usuario Eliminado'}), 201
+    return jsonify({'success: ': 'User deleted'}), 201
 
 # <----------------------------------------------------------------->
 # REGISTRAR USUARIO
